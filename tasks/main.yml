@@ -1,0 +1,23 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for nginx-role
+
+- name: Install Package nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Start and enable nginx service
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: Copy index.html to /var/www/html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
